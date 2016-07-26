@@ -1,0 +1,95 @@
+*
+	margin 0 
+	padding 0
+
+//normalize-css()
+
+// Material Shadows
+shadow-level(l = 1)
+	if l == -1
+		box-shadow: inset -2px 7px 9px -7px rgba(0,0,0,0.7);
+	if l == 0
+		box-shadow: none;
+	if l == 1
+		box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+	if l == 2
+		box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	if l == 3
+		box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+	if l == 4
+		box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+	if l == 5
+		box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+
+// Card Function        
+card(depth)
+	if depth < 1
+		//box-shadow: none
+		shadow-level(0)
+	else if depth > 5
+		error('Invalid depth ' + depth + ' for mixin `card`.')
+	else
+		shadow-level(depth)
+		//box-shadow: bottom-shadow(depth), top-shadow(depth)
+
+// Common Transition
+trans(sec = 0.3s)
+	transition: all sec ease
+	
+// Grid
+$xsmall = 340px
+$small = 500px
+$med = 700px
+$large = 960px
+$xlarge = 1150px
+$wide = 1200px
+$side-nav = 100px
+$side-nav-min = 60px
+$side-nav-large = 200px
+ 
+// Colors
+$black = #000000
+$light-black = #23282D
+$white = #FFFFFF
+$grey = #555
+$grey-text = #BCBCBC
+$deep-grey = #32373C
+$light-grey = #F1F1F1
+$purp = #524763
+$dark-purp = #373142
+$red = #E54B4B
+$teal = #82D8D8
+$dark-teal = #66A6A6
+$lime = #CBE56C
+$blue = #1b66ff
+$deep-blue = #19283f
+$bright-blue = #00B9EB
+$active-blue = #0073AA
+$maroon = #6A2140
+$light-red = #CA5765
+$pink = #CF256D
+$orange = #E8846B
+
+//Interface Colors
+$text = black
+$action = red
+$accent = blue
+$navi = deep-blue
+
+//Social Colors
+$twitter = #00aced
+$facebook = #3b5998
+$google = #dd4b39
+$youtube = #bb0000
+
+// Z-Index level
+$zNeg = -7
+$zLowest = 1
+$zLow = 4
+$zMid = 5
+$zVideo = 6
+$zHeader = 7
+$zNav = 8
+$zMini = 9
+$zModal = 10
+$zHighest = 11

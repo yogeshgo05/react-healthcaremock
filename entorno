@@ -1,0 +1,7 @@
+#!/bin/bash
+# Terminal open
+
+gnome-terminal --geometry=50x9+900+1000 -x bash -c "meteor" & gnome-terminal --geometry=82x9+0+1000
+sleep 10s
+gnome-terminal --geometry=82x9+0+1000 -x bash -c "firefox --new-window http://localhost:3000/"
+

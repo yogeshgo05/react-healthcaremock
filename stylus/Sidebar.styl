@@ -1,0 +1,40 @@
+.admin-menu
+	display flex
+	flex-direction column
+	justify-content flex-start
+	align-items flex-start
+	& .my-ul
+		padding 0
+		width 100%
+		list-style none
+	& li
+		margin-bottom 4px
+		padding 0px
+		display block
+		
+	& .ItemIcon
+		width 4px
+		trans()
+
+	& .active
+		color $light-grey
+		trans()
+		& .ItemIcon
+			transform: rotate(90deg)
+		
+	& a
+		outline 0
+		text-decoration none
+		padding 17px
+		color #FFFFFF
+		background-color #838A9A
+		display flex
+		flex-direction row
+		justify-content space-between
+
+.subMenu
+	flex 1 0 fit-content
+	display flex
+	flex-direction column
+	background-color $lime
+
