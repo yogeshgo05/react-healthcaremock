@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-export default class BuildHealthProfile extends Component {
+export default class FormPage extends Component {
 
 	render() {
 		let panes = [	{label: "Build health profile", faIcon: "fa-angle-right", panel:"<div>This is my tab 1 contents!</div>"},
@@ -9,7 +9,7 @@ export default class BuildHealthProfile extends Component {
 								]
 
 		return(
-				<Tabs label="Build health profile" faIcon="fa-angle-right">
+				<Tabs>
 					<Pane label="Location" faIcon="fa-angle-right">
             <div>This is my tab 1 contents!</div>
           </Pane>
@@ -34,7 +34,8 @@ const Tabs = React.createClass({
   },
   getDefaultProps() {
     return {
-      selected: false
+      selected: 9999,
+      openGrp: false
     };
   },
   getInitialState() {
@@ -45,29 +46,27 @@ const Tabs = React.createClass({
   handleClick(index, event) {
     event.preventDefault();
     if (index===this.state.selected) {
-      this.setState({selected: false});
+      this.setState({selected: 9999});
     }else{
       this.setState({selected: index});
     }
   },
+
   _renderTitles() {
     function labels(child, index) {
-      let activeClass = (this.state.selected === index ? 'active' : '');
+      let activeClass = (this.state.selected === index ? 'activeTab' : '');
       return (
         <li key={index} >
           <a href="#" className={activeClass} onClick={this.handleClick.bind(this, index)} >
             {child.props.label}
-            <div className="ItemIcon">
-              <i className={"fa " + child.props.faIcon + " fa-lg"}></i>
-            </div>
           </a>
         </li>
       );
     }
     return (
-    	<div className="admin-menu">
-      	<ul className="my-ul">
-        	{this.props.children.map(labels.bind(this))}
+    	<div className="tabbed-menu">
+      	<ul className="tabbed-ul">
+          {this.props.children.map(labels.bind(this))}
       	</ul>
       </div>
     );
@@ -81,9 +80,9 @@ const Tabs = React.createClass({
   },
   render() {
     return (
-      <div className="admin-body">
-      	<div className="admin-nav">{this._renderTitles()}</div>
-      	<div className="admin-content">{this._renderContent()}</div>
+      <div className="tabbed-body">
+      	<div className="tab-nav">{this._renderTitles()}</div>
+      	<div className="tab-content">{this._renderContent()}</div>
       </div>
     );
   }

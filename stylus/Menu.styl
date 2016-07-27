@@ -1,0 +1,65 @@
+.menu
+	display flex
+	flex-direction column
+	justify-content flex-start
+	align-items flex-start
+
+.menu-ul
+	padding 0
+	width 100%
+	list-style none
+
+
+li
+	padding 0px
+	display block
+	
+.ItemIcon
+	width 4px
+	trans()
+
+.active
+	color $light-grey
+	trans()
+	
+.ItemIcon
+	transform: rotate(90deg)
+		
+.grpTab
+	outline 0
+	text-decoration none
+	padding 17px
+	margin-bottom 4px
+	color #FFFFFF
+	background-color rgba(110, 114, 124, 0.6)
+	display flex
+	flex-direction row
+	justify-content space-between
+	& .arrow
+		trans()
+	&.open
+		& .arrow
+			transform rotate(90deg)
+
+.tabs-wrap
+	flex 1 0 fit-content
+	margin 4px 0 0 0
+	display flex		
+	flex-direction column
+	max-height 0
+	overflow hidden
+	trans()
+	&.open
+		max-height 1000px
+		
+.tab
+	@extends .grpTab
+	background-color transparent
+	border-left 5px solid transparent
+	opacity 1
+	&:hover
+		opacity 1
+		background rgba(69, 74, 87, 1)// #454A57
+	&.active
+		border-left 5px solid #72DAFD
+		font-weight 400

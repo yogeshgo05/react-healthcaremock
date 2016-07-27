@@ -26,12 +26,16 @@
 .main-bg
 	position fixed
 	background url('./bg-90.jpg')
-	background-repeat no-repeat
-	background-size cover
-	background-position center
+	background-origin: padding-box;
+	background-position: 100% 0%;
+	background-repeat: repeat;
+	background-size: cover;
 	overflow hidden
 	height 100vh
 	width 100vw
+	font-size 0.875em
+	font-style normal
+	font-weight 300
 	display flex
 	flex-direction row
 	justify-content center
