@@ -8,6 +8,11 @@ import Conditions from '../partials/survey/Conditions.jsx';
 
 
 export default class GrpTabs extends Component {
+
+	nextStep(){
+		console.log("Next Step ->");
+	}
+
 	render(){
 		let step = this.props.step;
 		let group = this.props.group;
@@ -15,11 +20,11 @@ export default class GrpTabs extends Component {
 		return(
 				<Menu step={step} opened={group} selected={tab}>
 					<Group label="Build health profile">
-						<Tab label="Location"><Locat /></Tab>
-						<Tab label="Basic information"><Binfo /></Tab>
-						<Tab label="Doctors"><div><Doctors /></div></Tab>
-						<Tab label="Drugs"><div><Drugs /></div></Tab>
-						<Tab label="Conditions"><div><Conditions /></div></Tab>
+						<Tab label="Location"><Locat newStep={this.nextStep} /></Tab>
+						<Tab label="Basic information"><Binfo newStep={this.nextStep} /></Tab>
+						<Tab label="Doctors"><div><Doctors newStep={this.nextStep} /></div></Tab>
+						<Tab label="Drugs"><div><Drugs newStep={this.nextStep} /></div></Tab>
+						<Tab label="Conditions"><div><Conditions newStep={this.nextStep} /></div></Tab>
 						<Tab label="Savings"><div>0.6 - Savings</div></Tab>
 					</Group>
 					<Group label="Pick Health plan">

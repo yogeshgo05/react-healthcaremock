@@ -14,7 +14,7 @@ export default class Locat extends Component {
 	nextStep() {
 		if (this.state.zipOk === true){
 			this.setState({errormsg: false});
-		console.log("Next Step");
+			this.props.newStep();
 		} else {
 			this.setState({errormsg: true});
 		}
@@ -36,7 +36,6 @@ export default class Locat extends Component {
 	}
 
 	render(){
-		console.log(this.state.zipOk);
 		let zipIsOk = (this.state.zipOk === true ? 'zipIsOk ' : '');
 		let zipWarning = (this.state.zipWarning === true ? 'warning ' :'');
 		let errorShow = (this.state.errormsg === true ? 'show ' :'');

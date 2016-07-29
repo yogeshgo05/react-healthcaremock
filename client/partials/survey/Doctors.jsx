@@ -12,6 +12,14 @@ export default class Locat extends Component {
 		}
 	}
 
+	nextStep() {
+		this.props.newStep();
+	}
+
+	cardClick(){
+		this.handleYesNoClick("no");
+	}
+
 	handleYesNoClick(expression){
 		switch(expression) {
 	    case "yes":
@@ -93,7 +101,7 @@ export default class Locat extends Component {
 						<div className="cardDist">
 							5.6mi<i className="docMapPin fa-fw fa fa-map-marker" aria-hidden="true"></i>
 						</div>
-						<div className="cardDocData">
+						<div className="cardDocData" onClick={this.cardClick.bind(this)}>
 							<span className="cardName">Juan Gonzalez Velez</span>
 							<span className="cardSpeciality">Emergency Medicine</span>
 							<span className="cardAdr">505 Parnassus Ave</span>
@@ -107,7 +115,7 @@ export default class Locat extends Component {
 						<div className="cardDist">
 							2.4mi<i className="docMapPin fa-fw fa fa-map-marker" aria-hidden="true"></i>
 						</div>
-						<div className="cardDocData">
+						<div className="cardDocData" onClick={this.cardClick.bind(this)}>
 							<span className="cardName">Juan Zorrilla</span>
 							<span className="cardSpeciality">Obstetrics & Gynecology</span>
 							<span className="cardAdr">1825 4th St</span>
@@ -124,7 +132,7 @@ export default class Locat extends Component {
 					 a few questions about your medical history and needs.
 					  This information will never affect the price you pay
 					   for insurance and your answers are protected by our personal <span><a href="#" >privacy policy</a></span>.</p>
-					<button className={"btnGo "} >
+					<button className={"btnGo "} onClick={this.nextStep.bind(this)} >
 						Let's go
 						<i className="fa-fw fa fa-angle-right fa-lg" aria-hidden="true"></i>
 					</button>

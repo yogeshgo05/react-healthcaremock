@@ -12,12 +12,7 @@ export default class Binfo extends Component {
 	}
 
 	nextStep() {
-		if (this.state.zipOk === true){
-			this.setState({errormsg: false});
-		console.log("Next Step");
-		} else {
-			this.setState({errormsg: true});
-		}
+		this.props.newStep();
 	}
 
 	handleInputChange(event){
@@ -36,7 +31,6 @@ export default class Binfo extends Component {
 	}
 
 	render(){
-		console.log(this.state.zipOk);
 		let zipIsOk = (this.state.zipOk === true ? 'zipIsOk ' : '');
 		let zipWarning = (this.state.zipWarning === true ? 'warning ' :'');
 		let errorShow = (this.state.errormsg === true ? 'show ' :'');

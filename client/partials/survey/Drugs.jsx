@@ -12,13 +12,17 @@ export default class Drugs extends Component {
 		}
 	}
 
+	nextStep() {
+		this.props.newStep();
+	}
+
 	handleYesNoClick(expression){
 		switch(expression) {
 	    case "yes":
 	        this.setState({substep: 1});
 	        break;
 	    case "no":
-	        this.setState({substep: 0});
+	        this.nextStep();
 	        break;
 	    case "cancel":
 	        this.setState({substep: 0});
