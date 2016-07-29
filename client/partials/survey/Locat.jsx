@@ -11,10 +11,10 @@ export default class Locat extends Component {
 		}
 	}
 
-	nextStep() {
+	goStep() {
 		if (this.state.zipOk === true){
 			this.setState({errormsg: false});
-			this.props.newStep();
+			this.props.goStep();
 		} else {
 			this.setState({errormsg: true});
 		}
@@ -54,7 +54,7 @@ export default class Locat extends Component {
 						onChange={this.handleInputChange.bind(this)}/></form>
 				</div>
 				<div className={"error " + errorShow}><p>Try again! Please enter a valid 5-digit ZIP code.</p></div>
-				<button className={"btnNext " + zipIsOk} onClick={this.nextStep.bind(this)}>
+				<button className={"btnNext " + zipIsOk} onClick={this.goStep.bind(this)}>
 					Find my plan
 					<i className="fa-fw fa fa-angle-right fa-lg" aria-hidden="true"></i>
 				</button>

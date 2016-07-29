@@ -12,8 +12,8 @@ export default class Drugs extends Component {
 		}
 	}
 
-	nextStep() {
-		this.props.newStep();
+	goStep() {
+		this.props.goStep();
 	}
 
 	handleYesNoClick(expression){
@@ -22,7 +22,7 @@ export default class Drugs extends Component {
 	        this.setState({substep: 1});
 	        break;
 	    case "no":
-	        this.nextStep();
+	        this.goStep();
 	        break;
 	    case "cancel":
 	        this.setState({substep: 0});

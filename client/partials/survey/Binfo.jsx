@@ -6,23 +6,26 @@ export default class Binfo extends Component {
 		super();
 		this.state = {
 			zipOk: false,
-			zipWarning:false,
-			errormsg: false
+			zipWarning: true,
+			gender: "male"
 		}
 	}
 
-	nextStep() {
-		this.props.newStep();
+	goStep() {
+		if (this.state.zipOk === true) {
+			this.props.goStep();
+		}
 	}
 
 	handleInputChange(event){
 		let iValue = event.target.value;
 		let pattern = /[0-9]/g;
     let result = iValue.match(pattern);
-    if (result.length === 5){
+    console.log(result)
+    if (iValue > 17 && iValue < 65){
     	this.setState({
     		zipOk: true,
-    		errormsg: false,
+    		gender: "male",
     		zipWarning: false
     	});
     } else {
@@ -30,10 +33,15 @@ export default class Binfo extends Component {
     }
 	}
 
+	changeGender(gender){
+		this.setState({gender: gender});
+	}
+
 	render(){
 		let zipIsOk = (this.state.zipOk === true ? 'zipIsOk ' : '');
 		let zipWarning = (this.state.zipWarning === true ? 'warning ' :'');
-		let errorShow = (this.state.errormsg === true ? 'show ' :'');
+		let chkmale = (this.state.gender === "male" ? 'checked' : '');
+		let chkfemale = (this.state.gender === "female" ? 'checked' : '');
 		return(
 			<div className="formWrap ">
 				<div><p>Who are you buying health insurance for today?</p></div>
@@ -49,22 +57,49 @@ export default class Binfo extends Component {
 						<form >
 							<div className="cadrBody-gender">
 							Gender:
-							<input type="radio" id="male" name="gender" value="male"/>
-							<label for="male">Option A</label>
-						  <input type="radio" name="gender" value="female"/> Female
+							<div className="cadrBody-radio" onClick={this.changeGender.bind(this, "male")}>
+								<input className="cardRbtn" type="radio" id="male" name="gender" value="male" checked={chkmale} />
+								<label for="male">Male</label>
+							</div>
+							<div className="cadrBody-radio" onClick={this.changeGender.bind(this, "female")}>
+							  <input className="cardRbtn" type="radio" id="female" name="gender" value="female" checked={chkfemale} />
+							  <label for="female">Female</label>
+							</div>
 						  </div>
-							<input
-							type="text"
-							maxLength={5}
-							pattern="[0-9]"
-							name="zipcode"
-							placeholder="Search by zip code"
-							onChange={this.handleInputChange.bind(this)}/>
+						  <div className="ageSection">
+							  Age:
+								<input
+								className={zipWarning}
+								id="ageInput"
+								type="text"
+								maxLength={2}
+								pattern="[0-9]"
+								name="zipcode"
+								placeholder="Enter Age"
+								onChange={this.handleInputChange.bind(this)}/>
+							</div>
 						</form>
 					</div>
 				</div>
-				<div className={"error " + errorShow}><p>Try again! Please enter a valid 5-digit ZIP code.</p></div>
-				<button className={"btnNext " + zipIsOk} onClick={this.nextStep.bind(this)}>
+				<div className={"cardWrap close "} >
+					<div className={"cardHead close"}>
+						<span className="fa-stack close ">
+							<i className="fa fa-circle fa-stack-2x"></i>
+							<i className="fa fa-plus fa-stack-1x fa-inverse"></i>
+						</span>
+						<p>Add spouse</p>
+					</div>
+				</div>
+				<div className={"cardWrap close "} >
+					<div className={"cardHead close"}>
+						<span className="fa-stack close ">
+							<i className="fa fa-circle fa-stack-2x"></i>
+							<i className="fa fa-plus fa-stack-1x fa-inverse"></i>
+						</span>
+						<p>Add a dependent</p>
+					</div>
+				</div>
+				<button className={"btnNext " + zipIsOk} onClick={this.goStep.bind(this)}>
 					Find insurance for myself
 					<i className="fa-fw fa fa-angle-right fa-lg" aria-hidden="true"></i>
 				</button>

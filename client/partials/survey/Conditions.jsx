@@ -40,8 +40,8 @@ export default class Conditions extends Component {
 										condCounter: counter});
 	}
 
-	nextStep() {
-		this.props.newStep();
+	goStep() {
+		this.props.goStep();
 	}
 
 	nextsubStep(){
@@ -105,7 +105,6 @@ export default class Conditions extends Component {
 		let conds = this.state.conditions;
 		let BtnTxt = this.state.selection != 0 ? 'Next' : 'Skip'
 		let noneShow = this.state.condCounter != 0 ? 'hide' : 'show'
-		console.log(this.state.condCounter);
 
 		return(
 			<div>
@@ -129,8 +128,8 @@ export default class Conditions extends Component {
 				</div>
 				<div ref="smoke" className={"doctorsWrap " + smoke}>
 					<div className="title"><p>Do you smoke cigarettes or use other tobacco products?</p></div>
-					<button className={"btnYesNo "} onClick={this.nextStep.bind(this)}>Yes</button>
-					<button className={"btnYesNo "} onClick={this.nextStep.bind(this)}>No</button>
+					<button className={"btnYesNo "} onClick={this.goStep.bind(this)}>Yes</button>
+					<button className={"btnYesNo "} onClick={this.goStep.bind(this)}>No</button>
 				</div>
 				<div ref="confirm" className={"doctorsWrap " + confirm}>
 					<div className="title"><p>My conditions</p></div>

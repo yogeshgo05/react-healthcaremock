@@ -5,12 +5,14 @@ import Binfo from '../partials/survey/Binfo.jsx';
 import Doctors from '../partials/survey/Doctors.jsx';
 import Drugs from '../partials/survey/Drugs.jsx';
 import Conditions from '../partials/survey/Conditions.jsx';
+import Savings from '../partials/survey/Savings.jsx';
+
 
 
 export default class GrpTabs extends Component {
 
-	nextStep(){
-		console.log("Next Step ->");
+	goStep(index){
+		this.props.goStep(index);
 	}
 
 	render(){
@@ -20,23 +22,23 @@ export default class GrpTabs extends Component {
 		return(
 				<Menu step={step} opened={group} selected={tab}>
 					<Group label="Build health profile">
-						<Tab label="Location"><Locat newStep={this.nextStep} /></Tab>
-						<Tab label="Basic information"><Binfo newStep={this.nextStep} /></Tab>
-						<Tab label="Doctors"><div><Doctors newStep={this.nextStep} /></div></Tab>
-						<Tab label="Drugs"><div><Drugs newStep={this.nextStep} /></div></Tab>
-						<Tab label="Conditions"><div><Conditions newStep={this.nextStep} /></div></Tab>
-						<Tab label="Savings"><div>0.6 - Savings</div></Tab>
+						<Tab label="Location" goStep={this.goStep.bind(this)}><Locat goStep={this.goStep.bind(this)} /></Tab>
+						<Tab label="Basic information" goStep={this.goStep.bind(this)}><Binfo goStep={this.goStep.bind(this)} /></Tab>
+						<Tab label="Doctors" goStep={this.goStep.bind(this)}><div><Doctors goStep={this.goStep.bind(this)} /></div></Tab>
+						<Tab label="Drugs" goStep={this.goStep.bind(this)}><div><Drugs goStep={this.goStep.bind(this)} /></div></Tab>
+						<Tab label="Conditions" goStep={this.goStep.bind(this)}><div><Conditions goStep={this.goStep.bind(this)} /></div></Tab>
+						<Tab label="Savings" goStep={this.goStep.bind(this)}><div><Savings goStep={this.goStep.bind(this)} /></div></Tab>
 					</Group>
 					<Group label="Pick Health plan">
-						<Tab label="Pick a plan"><div>1.1 - Pick a plan</div></Tab>
-						<Tab label="Compare plans"><div>1.2 - Compare plans</div></Tab>
+						<Tab label="Pick a plan" goStep={this.goStep.bind(this)}><div>1.1 - Pick a plan</div></Tab>
+						<Tab label="Compare plans" goStep={this.goStep.bind(this)}><div>1.2 - Compare plans</div></Tab>
 					</Group>
-					<Group label="Fill out application">
-						<Tab label="Residential address"><div>2.1 - Residential address</div></Tab>
-						<Tab label="Enrollment information"><div>2.2 - Enrollment information</div></Tab>
-						<Tab label="Monthly payment"><div>2.3 - Monthly payment</div></Tab>
-						<Tab label="Legal Stuff"><div>2.4 - Legal Stuff</div></Tab>
-						<Tab label="E-signature"><div>2.5 - E-signature</div></Tab>
+					<Group label="Fill out application" goStep={this.goStep.bind(this)}>
+						<Tab label="Residential address" goStep={this.goStep.bind(this)}><div>2.1 - Residential address</div></Tab>
+						<Tab label="Enrollment information" goStep={this.goStep.bind(this)}><div>2.2 - Enrollment information</div></Tab>
+						<Tab label="Monthly payment" goStep={this.goStep.bind(this)}><div>2.3 - Monthly payment</div></Tab>
+						<Tab label="Legal Stuff" goStep={this.goStep.bind(this)}><div>2.4 - Legal Stuff</div></Tab>
+						<Tab label="E-signature" goStep={this.goStep.bind(this)}><div>2.5 - E-signature</div></Tab>
 					</Group>
 				</Menu>
 			)
@@ -70,29 +72,35 @@ const Menu = React.createClass({
 		};
 	},
 
+	componentWillReceiveProps(nextProps) {
+	    this.setState({
+	    	opened: nextProps.opened,
+				selected: nextProps.selected,
+				step: nextProps.step
+	    });  
+	},
+
 	grpClick(index, event) {
 		event.preventDefault();
 		if (index===this.state.opened) {
-			this.setState({
-				opened: 9999
-			});
+			this.setState({opened: 9999});
 		}else{
 			this.setState({
 				opened: index
 			});
 		}
 	},
-	tabClick(index, event) {
+	tabClick(index, child, event) {
 		event.preventDefault();
 		let step = this.props.step;
-		console.log(step);
-		if (index!==this.state.selected) {
-		//if(index < step){
-			this.setState({selected: index})
+		//if (index!==this.state.selected) {
+		if(index < step){
+			//this.setState({selected: index});
+			child.props.goStep(index);
 		};
 	},
 
-	_renderMenu(){
+	_renderMenu(step){
 		function labels (child, index) {
 			let openedClass = (this.state.opened === index ? 'open' : '');
 			let GrpLabel = child.props.label;
@@ -107,9 +115,10 @@ const Menu = React.createClass({
 						<ul>
 							{GrpChildren.map((child,index)=>{
 								let selectedClass = (this.state.selected === index ? 'active' : '');
+								step += 1;
 								return(
 									<li key={index} >
-										<a className={"tab " + selectedClass} onClick={this.tabClick.bind(this, index)}>
+										<a className={"tab " + selectedClass} onClick={this.tabClick.bind(this, step, child )}>
 											{child.props.label}
 										</a>
 									</li>
@@ -128,7 +137,7 @@ const Menu = React.createClass({
 		)
 	},
 	_renderContent() {
-		if (this.state.selected===9999) {
+		if (this.state.selected===9999 || this.state.opened===9999) {
 			return(<div></div>);
 		}else{
 	    return (
@@ -138,10 +147,11 @@ const Menu = React.createClass({
 	    );}
   },
 	render(){
+		let step = -1;
 		return(
 			<div className="tabbed-body">
-				<div className="group-nav">{this._renderMenu()}</div>
-				<div className="tab-content">{this._renderContent()}</div>
+				<div className="group-nav">{this._renderMenu(step)}</div>
+				<div className="tab-content">{this._renderContent() }</div>
 			</div>
 		)
 	}

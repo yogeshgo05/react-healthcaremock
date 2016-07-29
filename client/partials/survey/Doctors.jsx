@@ -12,8 +12,8 @@ export default class Locat extends Component {
 		}
 	}
 
-	nextStep() {
-		this.props.newStep();
+	goStep() {
+		this.props.goStep();
 	}
 
 	cardClick(){
@@ -132,7 +132,7 @@ export default class Locat extends Component {
 					 a few questions about your medical history and needs.
 					  This information will never affect the price you pay
 					   for insurance and your answers are protected by our personal <span><a href="#" >privacy policy</a></span>.</p>
-					<button className={"btnGo "} onClick={this.nextStep.bind(this)} >
+					<button className={"btnGo "} onClick={this.goStep.bind(this)} >
 						Let's go
 						<i className="fa-fw fa fa-angle-right fa-lg" aria-hidden="true"></i>
 					</button>
