@@ -1,0 +1,142 @@
+.doctorsWrap
+	flex 1 0 fit-content
+	display flex
+	flex-direction column
+	justify-content flex-start
+	align-items strench
+	font-size 1rem
+	font-weight 400
+	text-align center
+	color rgba(69, 74, 87, 1)
+	margin 30px 20px
+	padding 28px
+	width 480px
+	
+.hide
+	display none
+.show
+	dislay 1
+
+.title
+	margin 0 0 30px 0
+	
+.btnYesNo
+	background-color #FFFFFF
+	border: 1px solid #0081DC
+	color: rgb(131, 138, 154);
+	margin: 10px 0px 0px 0px;
+	padding: 25px 0px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	cursor: pointer;
+	trans(0.1s)
+	color #0081DC
+	
+.docInputWrap
+	flex 1 0 fit-content
+	display flex
+	flex-direction row
+	justify-content flex-start
+	align-items center
+	font-size 1.2rem
+	border none
+	height 37px
+	margin 0px 0px 10px 0px
+	padding 0 10px 0 16px
+	border 1px solid transparent
+	background-color #FFFFFF
+	&.active
+		border 1px solid #0081DC
+	
+.docSearch
+	flex 1 0 fit-content
+	color #0081DC
+		
+.docInput
+	flex 2 0 auto
+	margin 0 15px 0 15px
+	border none
+	shadow-level(0)
+	padding 0 0 0 2px
+	vertical-align middle
+	white-space normal
+	line-height 1.4
+	font-size 1rem
+	font-weight 400
+	color rgb(74, 74, 74)
+	
+.addDocCancel
+	flex 1 0 fit-content
+	border none
+	color #0081DC
+	background-color transparent
+
+.docMapPin
+	color #F14824
+	
+.adrInputWrap
+	@extend .docInputWrap
+	margin 0 0 20px 0
+	&.active
+		border 1px solid #0081DC
+		
+.mockCard
+	display flex
+	flex-direction row
+	justify-content space-between
+	align-items strench
+	margin 5px 0 10px 0
+	background-color #FFFFFF
+	& .cardDist
+		flex 1 0 fit-content
+		display flex
+		flex-direction row
+		justify-content center
+		align-items center
+		padding 15px
+		font-size 0.875rem
+	& .cardDocData
+		flex 1 0 auto
+		display flex
+		flex-direction column
+		justify-content flex-start
+		align-items flex-start
+		padding 15px 10px
+		& .cardName
+				color #0081DC
+	& .angleRight
+		display flex
+		flex-direction row
+		align-items center
+		color #0081DC
+		padding 0 15px 0 10px
+
+.text
+	text-align left
+	font-size 0.875rem
+	& a 
+		text-decoration none
+		color #0081DC
+		&:hover
+			color #0074C7
+
+.btnGo
+	flex 1 0 auto
+	align-self center
+	margin: 34px 0px 0px 0px;
+	padding: 20px 27px 20px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	cursor: pointer;
+	background-color #0081DC
+	color #FFFFFF
+	border none
+
+.hide
+	display none
+.show
+	display 1

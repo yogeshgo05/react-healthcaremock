@@ -1,0 +1,58 @@
+
+	.inputWrap
+		flex 1 0 fit-content
+		display flex
+		flex-direction row
+		justify-content center
+		align-items center
+		font-size 1.2rem
+		border none
+		width 222px
+		height 37px
+		margin 33px 16px 15px 16px
+		background-color #FFFFFF
+		&.zipIsOk
+			border 1px solid #0081DC
+		&.warning
+			border 1px solid orange
+	
+	.locInput
+		margin 0 0 0 15px
+		border 0px solid #0081DC
+		shadow-level(0)
+		padding 0
+		display inline-block
+		vertical-align middle
+		white-space normal
+		background none
+		line-height 1.4
+		font-size 1rem
+		font-weight 400
+		color rgba(69, 74, 87, 1)
+		width 150px
+			
+		
+.btnNext
+	background-color #FFFFFF
+	border: 1px solid rgb(131, 138, 154)
+	color: rgb(131, 138, 154);
+	margin: 30px 0px 0px 0px;
+	padding: 20px 27px 20px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	cursor: pointer;
+	trans(0.1s)
+	&.zipIsOk
+		background-color #0081DC
+		color #FFFFFF
+		border none
+		
+.error
+	opacity 0
+	color rgb(241, 72, 36)
+	font-size: 0.875rem;
+	trans(0.1s)
+	&.show
+		opacity 1

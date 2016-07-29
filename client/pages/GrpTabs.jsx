@@ -1,17 +1,25 @@
 import React, {Component} from 'react';
 
-import FormPage from './FormPage.jsx'
+import Locat from '../partials/survey/Locat.jsx';
+import Binfo from '../partials/survey/Binfo.jsx';
+import Doctors from '../partials/survey/Doctors.jsx';
+import Drugs from '../partials/survey/Drugs.jsx';
+import Conditions from '../partials/survey/Conditions.jsx';
+
 
 export default class GrpTabs extends Component {
 	render(){
+		let step = this.props.step;
+		let group = this.props.group;
+		let tab = this.props.tab
 		return(
-				<Menu >
+				<Menu step={step} opened={group} selected={tab}>
 					<Group label="Build health profile">
-						<Tab label="Location"><div>0.1 - Location</div></Tab>
-						<Tab label="Basic information"><div>0.2 - Basic information</div></Tab>
-						<Tab label="Doctors"><div>0.3 - Doctors</div></Tab>
-						<Tab label="Drugs"><div>0.4 - Drugs</div></Tab>
-						<Tab label="Conditions"><div>0.5 - Conditions</div></Tab>
+						<Tab label="Location"><Locat /></Tab>
+						<Tab label="Basic information"><Binfo /></Tab>
+						<Tab label="Doctors"><div><Doctors /></div></Tab>
+						<Tab label="Drugs"><div><Drugs /></div></Tab>
+						<Tab label="Conditions"><div><Conditions /></div></Tab>
 						<Tab label="Savings"><div>0.6 - Savings</div></Tab>
 					</Group>
 					<Group label="Pick Health plan">
@@ -36,6 +44,7 @@ const Menu = React.createClass({
 		opened: React.PropTypes.number,
 		selected: React.PropTypes.number,
 		showPanel: React.PropTypes.bool,
+		step: React.PropTypes.number,
 		children: React.PropTypes.oneOfType([
 			React.PropTypes.array,
 			React.PropTypes.element
@@ -43,35 +52,39 @@ const Menu = React.createClass({
 	},
 	getDefaultProps() {
 		return {
-			opened: 9999,
-			selected: 9999,
+			opened: 0,
+			selected: 0,
+			step: 0
 		};
 	},
 	getInitialState() {
 		return {
 			opened: this.props.opened,
-			selected: this.props.selected
+			selected: this.props.selected,
+			step: this.props.step
 		};
 	},
+
 	grpClick(index, event) {
 		event.preventDefault();
 		if (index===this.state.opened) {
 			this.setState({
-				opened: 9999,
-				selected: 9999});
+				opened: 9999
+			});
 		}else{
 			this.setState({
-				opened: index,
-				selected: 9999});
+				opened: index
+			});
 		}
 	},
 	tabClick(index, event) {
 		event.preventDefault();
-		if (index===this.state.selected) {
-			this.setState({selected: 9999});
-		}else{
-			this.setState({selected: index});
-		}
+		let step = this.props.step;
+		console.log(step);
+		if (index!==this.state.selected) {
+		//if(index < step){
+			this.setState({selected: index})
+		};
 	},
 
 	_renderMenu(){
