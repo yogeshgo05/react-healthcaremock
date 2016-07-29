@@ -6,7 +6,7 @@ export default class Survey extends Component {
 	constructor(){
 		super();
 		this.state = {
-			step: 1
+			step: 0
 		}
 	}
 
